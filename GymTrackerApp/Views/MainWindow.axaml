@@ -4,6 +4,7 @@
         xmlns:views="using:PracticaGymTracker.Views.Pages"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:menu="clr-namespace:PracticaGymTracker.Views.Pages.Menu"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         MinWidth="1100" MinHeight="750"
         x:Class="PracticaGymTracker.Views.MainWindow"
@@ -53,6 +54,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:AdminPanelViewModel}">
             <views:AdminPanelView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ProfileViewModel}">
+            <menu:ProfileView/>
         </DataTemplate>
     </Window.DataTemplates>
 
@@ -140,6 +144,16 @@
                         <PathIcon Data="m20 13.7-2.1-2.1a2 2 0 0 0-2.8 0L9.7 17 M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"
                                   Width="20" Height="20" />
                         <TextBlock Text="{DynamicResource MenuCatalogOfExercises}" FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button Command="{Binding ShowProfileCommand}" 
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                        Background="Transparent" Foreground="#FFFFFF" Classes="MenuItem"
+                        FontSize="16" FontWeight="SemiBold" Padding="15,10" CornerRadius="8">
+                    <StackPanel Orientation="Horizontal" Spacing="15">
+                        <PathIcon Data="M12,19.2C9.5,19.2 7.29,18.04 5.86,16.23C5.9,14.18 9.94,13.05 12,13.05C14.06,13.05 18.1,14.18 18.14,16.23C16.71,18.04 14.5,19.2 12,19.2M12,5.85A2.7,2.7 0 0,1 14.7,8.55A2.7,2.7 0 0,1 12,11.25A2.7,2.7 0 0,1 9.3,8.55A2.7,2.7 0 0,1 12,5.85M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                                  Width="20" Height="20" />
+                        <TextBlock Text="ПРОФІЛЬ" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
                 

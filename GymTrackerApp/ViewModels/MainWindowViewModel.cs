@@ -119,4 +119,7 @@ public partial class MainWindowViewModel : ViewModelBase
     /// </summary>
     [RelayCommand]
     private void ShowAdminPanel() => CurrentPage = new AdminPanelViewModel();
+    
+    [RelayCommand]
+    private void ShowProfile() => CurrentPage = new ProfileViewModel();
 }

@@ -10,12 +10,11 @@ public class JsonDataService
 {
     private readonly string _filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "workouts_data.json");
     private readonly string _measurementsFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "measurements_data.json");
+    private readonly string _profileFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "profile_data.json");
     
     public void SaveWorkouts(IEnumerable<WorkoutItem> workouts)
     {
-        var options = new JsonSerializerOptions { WriteIndented = true };
-        
-        string json = JsonSerializer.Serialize(workouts, options);
+        string json = JsonSerializer.Serialize(workouts);
         File.WriteAllText(_filePath, json);
     }
     
@@ -49,5 +48,18 @@ public class JsonDataService
     {
         string json = JsonSerializer.Serialize(measurements);
         File.WriteAllText(_measurementsFilePath, json);
+    }
+    public UserProfile LoadProfile()
+    {
+        if (!File.Exists(_profileFilePath))
+            return new UserProfile();
+
+        string json = File.ReadAllText(_profileFilePath);
+        return JsonSerializer.Deserialize<UserProfile>(json) ?? new UserProfile();
+    }
+    public void SaveProfile(UserProfile profile)
+    {
+        string json = JsonSerializer.Serialize(profile);
+        File.WriteAllText(_profileFilePath, json);
     }
 }

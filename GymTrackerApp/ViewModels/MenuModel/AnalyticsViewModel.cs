@@ -19,6 +19,8 @@ public partial class AnalyticsViewModel : ViewModelBase
     [ObservableProperty] private ObservableCollection<BodyMeasurementItem> _measurementsHistory;
     [ObservableProperty] private double _currentWeight;
     [ObservableProperty] private double _progressPercentage;
+    [ObservableProperty] private double _targetWeight;
+    
     [ObservableProperty]
     private ISeries[] _weightSeries;
     [ObservableProperty]
@@ -46,11 +48,12 @@ public partial class AnalyticsViewModel : ViewModelBase
         UpdateChart();
     }
 
-    private void CalculateProgress()
+    public void CalculateProgress()
     {
-        double startWeight = 61.0;
-        double targetWeight = 75.0;
-
+        var profile = _dataService.LoadProfile();
+        double startWeight = profile.StartWeight; 
+        TargetWeight = profile.TargetWeight;
+        
         if (MeasurementsHistory.Any())
         {
             CurrentWeight = MeasurementsHistory.Last().Weight;
@@ -59,19 +62,12 @@ public partial class AnalyticsViewModel : ViewModelBase
         {
             CurrentWeight = startWeight;
         }
-
-        if (CurrentWeight >= targetWeight)
-        {
+        if (CurrentWeight >= TargetWeight)
             ProgressPercentage = 100;
-        }
         else if (CurrentWeight <= startWeight)
-        {
             ProgressPercentage = 0;
-        }
         else
-        {
-            ProgressPercentage = ((CurrentWeight - startWeight) / (targetWeight - startWeight)) * 100;
-        }
+            ProgressPercentage = ((CurrentWeight - startWeight) / (TargetWeight - startWeight)) * 100;
     }
 
     [RelayCommand]
