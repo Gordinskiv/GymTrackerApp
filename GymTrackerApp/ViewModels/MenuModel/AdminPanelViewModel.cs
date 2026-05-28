@@ -1,7 +1,9 @@
 using System.Collections.ObjectModel;
+using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using PracticaGymTracker.Models;
 using CommunityToolkit.Mvvm.Input;
+using PracticaGymTracker.Services;
 
 namespace PracticaGymTracker.ViewModels;
 
@@ -21,20 +23,29 @@ public partial class AdminPanelViewModel : ViewModelBase
     /// <summary>
     /// Загальна кількість зареєстрованих клієнтів (для верхньої картки).
     /// </summary>
-    [ObservableProperty] private string _totalClients = "24";
+    [ObservableProperty] private string _totalClients = "0";
     /// <summary>
     /// Кількість клієнтів, які були активні сьогодні (для верхньої картки).
     /// </summary>
-    [ObservableProperty] private string _activeToday = "8";
+    [ObservableProperty] private string _activeToday = "0";
 
     public AdminPanelViewModel()
     {
-        ClientsList = new ObservableCollection<ClientItem>
-        {
-            new ClientItem { Name = "Олександр В.", Goal = "Схуднення (-5 кг)", LastActive = "Онлайн", ProgressPercent = 65, StatusColor = "#00FF00" },
-            new ClientItem { Name = "Марія К.", Goal = "Рельєф", LastActive = "Сьогодні, 10:15", ProgressPercent = 80, StatusColor = "#888888" },
-            new ClientItem { Name = "Іван С.", Goal = "Силові показники (Жим 100)", LastActive = "Вчора", ProgressPercent = 40, StatusColor = "#888888" },
-            new ClientItem { Name = "Денис П.", Goal = "Набір маси (+10 кг)", LastActive = "Онлайн", ProgressPercent = 25, StatusColor = "#00FF00" }
-        };
+        var authService = new AuthService();
+        var realAthletes = authService.GetAthletes();
+        
+        TotalClients = realAthletes.Count.ToString();
+        ActiveToday = realAthletes.Count > 0 ? "1" : "0";
+        
+        ClientsList = new ObservableCollection<ClientItem>(
+            realAthletes.Select(athlete => new ClientItem
+            {
+                Name = athlete.Login, 
+                Goal = "Базова програма",
+                LastActive = "Нещодавно",
+                ProgressPercent = 10, 
+                StatusColor = "#00FF00"
+            })
+        );
     }
 }

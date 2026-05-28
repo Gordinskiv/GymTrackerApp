@@ -48,7 +48,14 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         IsAdminPanelVisible = isAdmin;
         IsMenuVisible = true;
-        ShowHome();
+        if (isAdmin)
+        {
+            ShowAdminPanel();
+        }
+        else
+        {
+            ShowHome();
+        }
     }
     /// <summary>
     /// Відображає сторінку логіна.
