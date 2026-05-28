@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "w8cczkpgmgw=",
+  "dgSpecHash": "sX9Ux5pvRpY=",
   "success": true,
   "projectFilePath": "/Users/gordinskij/RiderProjects/GymTracker_CourseWork/GymTrackerApp/GymTrackerApp.csproj",
   "expectedPackageFiles": [
@@ -20,6 +20,7 @@
     "/Users/gordinskij/.nuget/packages/avalonia.themes.simple/11.3.12/avalonia.themes.simple.11.3.12.nupkg.sha512",
     "/Users/gordinskij/.nuget/packages/avalonia.win32/11.3.12/avalonia.win32.11.3.12.nupkg.sha512",
     "/Users/gordinskij/.nuget/packages/avalonia.x11/11.3.12/avalonia.x11.11.3.12.nupkg.sha512",
+    "/Users/gordinskij/.nuget/packages/avalonia_gif/1.0.0/avalonia_gif.1.0.0.nupkg.sha512",
     "/Users/gordinskij/.nuget/packages/communitytoolkit.mvvm/8.2.1/communitytoolkit.mvvm.8.2.1.nupkg.sha512",
     "/Users/gordinskij/.nuget/packages/harfbuzzsharp/8.3.1.1/harfbuzzsharp.8.3.1.1.nupkg.sha512",
     "/Users/gordinskij/.nuget/packages/harfbuzzsharp.nativeassets.linux/8.3.1.1/harfbuzzsharp.nativeassets.linux.8.3.1.1.nupkg.sha512",

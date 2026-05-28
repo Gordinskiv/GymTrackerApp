@@ -20,33 +20,33 @@
                 <TextBlock Text="Створіть свій залізний профіль" 
                            Foreground="{DynamicResource TextMuted}" HorizontalAlignment="Center" Margin="0,0,0,15"/>
 
-                <TextBox Watermark="Ім'я користувача" Padding="12"/>
-                <TextBox Watermark="Email" Padding="12"/>
-                <TextBox Watermark="Пароль" PasswordChar="•" Padding="12"/>
-                <TextBox Watermark="Підтвердіть пароль" PasswordChar="•" Padding="12"/>
+                <TextBox Text="{Binding Username}" Watermark="Ім'я користувача" Padding="12"/>
+                <TextBox Text="{Binding Email}" Watermark="Email" Padding="12"/>
+                <TextBox Text="{Binding Password}" Watermark="Пароль" PasswordChar="•" Padding="12"/>
+                <TextBox Text="{Binding ConfirmPassword}" Watermark="Підтвердіть пароль" PasswordChar="•" Padding="12"/>
+                
                 <TextBlock Text="Оберіть тип акаунту:" Foreground="{DynamicResource TextMuted}" Margin="0,10,0,5"/>
                 
-                <Grid ColumnDefinitions="*, *" Margin="0,0,0,20">
-    
+                <Grid ColumnDefinitions="*, *" Margin="0,0,0,10">
                     <RadioButton Grid.Column="0" Content="Спортсмен" 
                                  IsChecked="{Binding IsUserRole}" 
-                                 Foreground="{DynamicResource TextWhite}"
-                                 Margin="0,0,10,0"/>
-                 
+                                 Foreground="{DynamicResource TextWhite}" Margin="0,0,10,0"/>
                     <RadioButton Grid.Column="1" Content="Тренер (Адмін)" 
                                  IsChecked="{Binding IsAdminRole}" 
                                  Foreground="{DynamicResource AccentMain}"/>
                 </Grid>
 
-                <Button Content="СТВОРИТИ АКАУНТ" 
-                        Command="{Binding RegisterCommand}"
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" FontWeight="Bold" 
+                           HorizontalAlignment="Center" TextWrapping="Wrap"
+                           IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+                <Button Content="СТВОРИТИ АКАУНТ" Command="{Binding RegisterCommand}"
                         Background="{DynamicResource AccentMain}" Foreground="White" 
                         FontWeight="Bold" HorizontalAlignment="Stretch" 
-                        HorizontalContentAlignment="Center" Padding="15" Margin="0,10,0,0"
+                        HorizontalContentAlignment="Center" Padding="15" Margin="0,5,0,0"
                         CornerRadius="8" Cursor="Hand"/>
 
-                <Button Content="Вже є акаунт? Увійти" 
-                        Command="{Binding GoToLoginCommand}"
+                <Button Content="Вже є акаунт? Увійти" Command="{Binding GoToLoginCommand}"
                         Background="Transparent" Foreground="{DynamicResource TextMuted}" 
                         HorizontalAlignment="Center" Cursor="Hand" FontSize="12"/>
             </StackPanel>

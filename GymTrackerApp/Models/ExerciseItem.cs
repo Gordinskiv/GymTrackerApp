@@ -1,3 +1,5 @@
+using System;
+
 namespace PracticaGymTracker.Models;
 
 /// <summary>
@@ -16,5 +18,7 @@ public class ExerciseItem
     /// <summary>
     /// Допоміжний м'яз-синергіст (наприклад, "Triceps").
     /// </summary>
-    public string SecondaryTargetMuscle { get; set; }
+    public string SecondaryTargetMuscle { get; set; }   
+    public string Description { get; set; } = string.Empty;
+    public string ImagePath { get; set; } = string.Empty;
 }

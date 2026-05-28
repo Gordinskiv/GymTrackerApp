@@ -20,7 +20,19 @@ public partial class ExercisesCatalogViewModel : ViewModelBase
     /// <summary>
     /// Назва обраної вправи для відображення на головному екрані каталогу.
     /// </summary>
-    [ObservableProperty] private string _selectedExerciseName = "Виберіть вправу";
+    private ExerciseItem _selectedExercise;
+
+    public ExerciseItem SelectedExercise
+    {
+        get => _selectedExercise;
+        set
+        {
+            if (value != null)
+            {
+                SetProperty(ref _selectedExercise, value);
+            }
+        }
+    }
 
     public ExercisesCatalogViewModel()
     {
@@ -31,7 +43,10 @@ public partial class ExercisesCatalogViewModel : ViewModelBase
                 GroupName = "ГРУДНІ М'ЯЗИ",
                 Exercises = new ObservableCollection<ExerciseItem>
                 {
-                    new ExerciseItem { Name = "Жим лежачи", TargetMuscle = "Chest", SecondaryTargetMuscle = "Triceps" },
+                    new ExerciseItem { Name = "Жим лежачи", TargetMuscle = "Chest", SecondaryTargetMuscle = "Triceps", 
+                        Description = "Базова вправа для розвитку грудних м'язів. Опустіть штангу до середини грудей, потім потужно вижміть вгору.",
+                        ImagePath = "avares://GymTrackerApp/Assets/BenchPress.jpg"
+                    },
                     new ExerciseItem { Name = "Жим на похилій лаві", TargetMuscle = "Chest", SecondaryTargetMuscle = "Triceps" },
                     new ExerciseItem { Name = "Віджимання на брусах", TargetMuscle = "Chest", SecondaryTargetMuscle = "Triceps" },
                 }

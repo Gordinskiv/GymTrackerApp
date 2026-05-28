@@ -341,6 +341,18 @@
           }
         }
       },
+      "Avalonia_Gif/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.0.2"
+        },
+        "compile": {
+          "lib/net6.0/AvaloniaGif.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/AvaloniaGif.dll": {}
+        }
+      },
       "CommunityToolkit.Mvvm/8.2.1": {
         "type": "package",
         "compile": {
@@ -1111,6 +1123,18 @@
         "lib/netstandard2.0/Avalonia.X11.xml"
       ]
     },
+    "Avalonia_Gif/1.0.0": {
+      "sha512": "osdzA4FbZzvWqlLcVz/ka6PInn/6in7/oPKHM6FqFPd8zOXjqje9DwyqPYeok88bgzfxWf1dpJMXutkJeyIY4w==",
+      "type": "package",
+      "path": "avalonia_gif/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "avalonia_gif.1.0.0.nupkg.sha512",
+        "avalonia_gif.nuspec",
+        "lib/net6.0/AvaloniaGif.dll"
+      ]
+    },
     "CommunityToolkit.Mvvm/8.2.1": {
       "sha512": "I24ofWVEdplxYjUez9/bljv/qb8r8Ccj6cvYXHexNBegLaD3iDy3QrzAAOYVMmfGWIXxlU1ZtECQNfU07+6hXQ==",
       "type": "package",
@@ -1606,6 +1630,7 @@
       "Avalonia.Diagnostics >= 11.3.12",
       "Avalonia.Fonts.Inter >= 11.3.12",
       "Avalonia.Themes.Fluent >= 11.3.12",
+      "Avalonia_Gif >= 1.0.0",
       "CommunityToolkit.Mvvm >= 8.2.1",
       "LiveChartsCore.SkiaSharpView.Avalonia >= 2.0.2"
     ]
@@ -1676,6 +1701,10 @@
           "Avalonia.Themes.Fluent": {
             "target": "Package",
             "version": "[11.3.12, )"
+          },
+          "Avalonia_Gif": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           },
           "CommunityToolkit.Mvvm": {
             "target": "Package",
