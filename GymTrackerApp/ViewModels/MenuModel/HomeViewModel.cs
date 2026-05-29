@@ -12,54 +12,32 @@ namespace PracticaGymTracker.ViewModels;
 /// </summary>
 public partial class HomeViewModel : ViewModelBase
 {
-    [ObservableProperty] private string _workoutsThisWeek = "0";
-    [ObservableProperty] private string _maxRecord = "0 кг";
-    [ObservableProperty] private string _favoriteExercise = "-";
-    
-    private readonly JsonDataService _dataService;
+    [ObservableProperty] private string _welcomeMessage = "Привіт!";
+    [ObservableProperty] private string _lastWorkoutText = "Ще немає тренувань. Час почати!";
+    [ObservableProperty] private string _totalWorkouts = "0";
 
-    [ObservableProperty]
-    private ObservableCollection<RecentLogItem> _recentLogs = new();
-    
     public HomeViewModel()
     {
-        _dataService = new JsonDataService();
-        LoadActualData();
+        LoadDashboardData();
     }
-    
-    /// <summary>
-    /// Завантаження актуальних даних з JSON файлу для подальшого відображення їх на віджетах.
-    /// </summary>
-    public void LoadActualData()
-    {
-        var allWorkouts = _dataService.LoadWorkouts();
-        
-        if (allWorkouts.Any())
-        {
-            var maxWeightValue = allWorkouts
-                .Select(w => int.TryParse(new string(w.Weight.Where(char.IsDigit).ToArray()), out int weight) ? weight : 0)
-                .Max();
-            MaxRecord = $"{maxWeightValue} кг";
-            
-            FavoriteExercise = allWorkouts
-                .GroupBy(w => w.ExerciseName)
-                .OrderByDescending(g => g.Count())
-                .First().Key;
-            
-            WorkoutsThisWeek = allWorkouts.Count.ToString();
-        }
-        var latestExercises = allWorkouts.AsEnumerable().Reverse().Take(3);
-        RecentLogs.Clear();
 
-        foreach (var workout in latestExercises)
+    private void LoadDashboardData()
+    {
+        var currentUser = SessionManager.CurrentUser;
+        if (currentUser != null)
         {
-            RecentLogs.Add(new RecentLogItem
+            WelcomeMessage = $"Привіт, {currentUser.Login}!";
+                
+            var workoutService = new WorkoutService();
+            var myWorkouts = workoutService.GetWorkoutsForCurrentUser();
+                
+            TotalWorkouts = myWorkouts.Count.ToString();
+
+            if (myWorkouts.Any())
             {
-                Date = "Сьогодні",
-                Title = workout.ExerciseName,
-                Summary = $"{workout.Weight} • {workout.Reps} повт."
-            });
+                var last = myWorkouts.Last();
+                LastWorkoutText = $"{last.Date} — {last.Type} ({last.DurationMinutes} хв)";
+            }
         }
     }
-    
 }

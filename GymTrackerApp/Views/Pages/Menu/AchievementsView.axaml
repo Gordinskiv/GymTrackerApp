@@ -7,26 +7,29 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PracticaGymTracker.Views.Pages.AchievementsView">
     
-    <ScrollViewer Padding="20">
+    <ScrollViewer Padding="30">
         <StackPanel Spacing="25">
-            <TextBlock Text="{DynamicResource MenuAchievement}" FontSize="28" FontWeight="Black" Foreground="{DynamicResource TextWhite}"/>
-
-            <UniformGrid Columns="2">
-                <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20" Margin="5">
-                    <StackPanel Spacing="10" HorizontalAlignment="Center">
-                        <PathIcon Data="M12 15l-2 5L2 12l5-2 5-8 5 8 5 2-8 8-2-5z" Width="50" Height="50" Foreground="#FFD700"/>
-                        <TextBlock Text="ПЕРША СОТНЯ" FontWeight="Black" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Жим 100 кг" FontSize="12" Foreground="{DynamicResource TextMuted}" HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </Border>
-                <Border Background="{DynamicResource BgCard}" Opacity="0.4" CornerRadius="12" Padding="20" Margin="5">
-                    <StackPanel Spacing="10" HorizontalAlignment="Center">
-                        <PathIcon Data="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" Width="50" Height="50" Foreground="Gray"/>
-                        <TextBlock Text="МАЙСТЕР ТЯГИ" FontWeight="Black" HorizontalAlignment="Center"/>
-                        <TextBlock Text="150 кг в тязі" FontSize="12" Foreground="{DynamicResource TextMuted}" HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </Border>
-            </UniformGrid>
+            <TextBlock Text="ДОСЯГНЕННЯ" FontSize="28" FontWeight="Black" Foreground="{DynamicResource TextWhite}"/>
+            
+            <ItemsControl ItemsSource="{Binding AchievementsList}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="2" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="30" Margin="10" BoxShadow="0 4 10 0 #22000000" Opacity="{Binding CardOpacity}">
+                            <StackPanel HorizontalAlignment="Center" Spacing="10">
+                                <Path Data="{Binding IconPathData}" Fill="{Binding IconColor}" Width="40" Height="40" Stretch="Uniform" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold" Foreground="{DynamicResource TextWhite}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Subtitle}" FontSize="14" Foreground="{DynamicResource TextMuted}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

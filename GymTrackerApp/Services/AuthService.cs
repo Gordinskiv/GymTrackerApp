@@ -64,4 +64,13 @@ public class AuthService
     {
         return _users.Where(u => u.Role == "User").ToList();
     }
+    public void UpdateUserGoal(string login, string newGoalWeight)
+    {
+        var user = _users.FirstOrDefault(u => u.Login == login);
+        if (user != null)
+        {
+            user.GoalWeight = newGoalWeight;
+            SaveUsers();
+        }
+    }
 }

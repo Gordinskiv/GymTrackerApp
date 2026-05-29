@@ -6,123 +6,59 @@
              x:DataType="vm:ProfileViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PracticaGymTracker.Views.Pages.Menu.ProfileView">
-    <Grid Margin="20,10,20,20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+    <ScrollViewer Padding="30">
+        <StackPanel Spacing="25">
+            <TextBlock Text="МІЙ ПРОФІЛЬ" FontSize="28" FontWeight="Black" Foreground="{DynamicResource AccentMain}"/>
+            
+            <Border Background="{DynamicResource BgCard}" CornerRadius="16" Padding="30" BoxShadow="0 4 15 0 #22000000">
+                <Grid ColumnDefinitions="Auto, *">
+                    
+                    <Border Grid.Column="0" Width="100" Height="100" CornerRadius="50" Background="{DynamicResource AccentMain}" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding AvatarLetter}" FontSize="45" FontWeight="Black" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="25,0,0,0">
+                        <TextBlock Text="{Binding Username}" FontSize="32" FontWeight="Black" Foreground="{DynamicResource TextWhite}"/>
+                        <TextBlock Text="{Binding RoleText}" FontSize="16" Foreground="{DynamicResource TextMuted}" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
 
-        <TextBlock Grid.Row="0" Grid.Column="0"
-                   Text="ПРОФІЛЬ КОРИСТУВАЧА"
-                   FontSize="28" FontWeight="Black"
-                   Foreground="{DynamicResource TextWhite}"
-                   VerticalAlignment="Top"
-                   Margin="0,15,0,20" />
-        <Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
-                Classes="MenuButton" Padding="0"
-                Command="{Binding SelectNewAvatarCommand}"
-                CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
-                CornerRadius="80"
-                VerticalAlignment="Top"
-                Margin="20,0,0,0">
-            <Grid>
-                <Border Background="{DynamicResource BgCard}"
-                        BorderBrush="{DynamicResource AccentMain}"
-                        BorderThickness="3"
-                        CornerRadius="80" Width="100" Height="100" />
-
-                <PathIcon
-                    Data="M12,19.2C9.5,19.2 7.29,18.04 5.86,16.23C5.9,14.18 9.94,13.05 12,13.05C14.06,13.05 18.1,14.18 18.14,16.23C16.71,18.04 14.5,19.2 12,19.2M12,5.85A2.7,2.7 0 0,1 14.7,8.55A2.7,2.7 0 0,1 12,11.25A2.7,2.7 0 0,1 9.3,8.55A2.7,2.7 0 0,1 12,5.85M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
-                    Foreground="{DynamicResource TextMuted}"
-                    Opacity="0.5"
-                    Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"
-                    IsVisible="{Binding AvatarBitmap, Converter={x:Static ObjectConverters.IsNull}}" />
-
-                <Border CornerRadius="80" ClipToBounds="True" Width="100" Height="100"
-                        IsVisible="{Binding AvatarBitmap, Converter={x:Static ObjectConverters.IsNotNull}}">
-                    <Image Source="{Binding AvatarBitmap}" Stretch="UniformToFill" />
-                </Border>
-            </Grid>
-        </Button>
-        <ScrollViewer Grid.Row="1" Grid.Column="0">
-            <StackPanel Spacing="20" MaxWidth="600" HorizontalAlignment="Left">
-                <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20">
-                    <StackPanel Spacing="15">
-                        <TextBlock Text="ОСНОВНІ ДАНІ" FontWeight="Bold" Foreground="{DynamicResource TextMuted}" />
-
-                        <StackPanel>
-                            <TextBlock Text="Ваше ім'я" Foreground="{DynamicResource TextWhite}" Margin="0,0,0,5" />
-                            <TextBox Text="{Binding UserName}" Watermark="Введіть ім'я..."
-                                     Background="{DynamicResource BgDark}" BorderThickness="0" />
-                        </StackPanel>
-
-                        <StackPanel>
-                            <TextBlock Text="Зріст (см)" Foreground="{DynamicResource TextWhite}" Margin="0,0,0,5" />
-                            <TextBox Text="{Binding HeightString}" Watermark="175"
-                                     Background="{DynamicResource BgDark}" BorderThickness="0" />
-                        </StackPanel>
+            <TextBlock Text="МОЯ СТАТИСТИКА" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource TextWhite}" Margin="0,15,0,0"/>
+            
+            <UniformGrid Columns="3">
+                <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20" Margin="0,0,10,0">
+                    <StackPanel>
+                        <TextBlock Text="{Binding TotalWorkouts}" FontSize="36" FontWeight="Black" Foreground="{DynamicResource AccentMain}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Тренувань" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Border>
-                <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20">
-                    <StackPanel Spacing="15">
-                        <TextBlock Text="НАЛАШТУВАННЯ ЦІЛІ" FontWeight="Bold" Foreground="{DynamicResource TextMuted}" />
-
-                        <Grid ColumnDefinitions="*, *">
-                            <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                <TextBlock Text="Початкова вага (кг)" Foreground="{DynamicResource TextWhite}"
-                                           Margin="0,0,0,5" />
-                                <TextBox Text="{Binding StartWeightString}" Background="{DynamicResource BgDark}"
-                                         BorderThickness="0" />
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="1">
-                                <TextBlock Text="Цільова вага (кг)" Foreground="{DynamicResource TextWhite}"
-                                           Margin="0,0,0,5" />
-                                <TextBox Text="{Binding TargetWeightString}" Background="{DynamicResource BgDark}"
-                                         BorderThickness="0" />
-                            </StackPanel>
-                        </Grid>
+                
+                <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20" Margin="5,0,5,0">
+                    <StackPanel>
+                        <TextBlock Text="0" FontSize="36" FontWeight="Black" Foreground="{DynamicResource TextWhite}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Досягнень" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Border>
-                <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20">
-                    <StackPanel Spacing="15">
-                        <TextBlock Text="АКТИВНІСТЬ ТА ХАРЧУВАННЯ" FontWeight="Bold"
-                                   Foreground="{DynamicResource TextMuted}" />
-
-                        <Grid ColumnDefinitions="*, *">
-                            <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                <TextBlock Text="Тренувань на тиждень" Foreground="{DynamicResource TextWhite}"
-                                           Margin="0,0,0,5" />
-                                <TextBox Text="{Binding WorkoutsPerWeekString}" Watermark="4"
-                                         Background="{DynamicResource BgDark}" BorderThickness="0" />
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="1">
-                                <TextBlock Text="Норма калорій (ккал)" Foreground="{DynamicResource TextWhite}"
-                                           Margin="0,0,0,5" />
-                                <TextBox Text="{Binding DailyCaloriesString}" Watermark="3000"
-                                         Background="{DynamicResource BgDark}" BorderThickness="0" />
-                            </StackPanel>
-                        </Grid>
+                
+                <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20" Margin="10,0,0,0">
+                    <StackPanel>
+                        <TextBlock Text="1" FontSize="36" FontWeight="Black" Foreground="{DynamicResource TextWhite}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Днів у додатку" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Border>
-                <StackPanel Spacing="10">
-                    <Button Content="ЗБЕРЕГТИ ЗМІНИ"
-                            Command="{Binding SaveProfileCommand}"
-                            Background="{DynamicResource AccentMain}"
-                            Foreground="White" FontWeight="Bold"
-                            Padding="30,12" CornerRadius="8"
-                            HorizontalAlignment="Left" />
-                    <TextBlock Text="{Binding SaveMessage}"
-                               Foreground="{DynamicResource AccentMain}"
-                               IsVisible="{Binding SaveMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
-                </StackPanel>
-
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+            </UniformGrid>
+            <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="25" Margin="0,20,0,0">
+                <Grid ColumnDefinitions="*, Auto">
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock Text="ЦІЛЬОВА ВАГА (КГ)" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextMuted}" Margin="0,0,0,5"/>
+                        <TextBox Text="{Binding CurrentGoalWeight}" FontSize="18" Padding="10" Background="{DynamicResource BgDark}" BorderThickness="0" MaxWidth="150" HorizontalAlignment="Left"/>
+                    </StackPanel>
+        
+                    <Button Grid.Column="1" Content="ОНОВИТИ МЕТУ" Command="{Binding SaveGoalCommand}"
+                            Background="{DynamicResource AccentMain}" Foreground="White" FontWeight="Bold" CornerRadius="8" Padding="20,10" VerticalAlignment="Bottom" Cursor="Hand"/>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

@@ -8,61 +8,43 @@
              x:Class="PracticaGymTracker.Views.Pages.HomeView">
 
     <ScrollViewer Padding="30">
-        <StackPanel Spacing="20">
-            <TextBlock Text="{DynamicResource HomeTitle}" FontSize="28" FontWeight="Black" Foreground="White" />
-
-            <UniformGrid Columns="3">
-                <Border Classes="StatCard">
+        <StackPanel Spacing="25">
+            
+            <TextBlock Text="{Binding WelcomeMessage}" FontSize="36" FontWeight="Black" Foreground="{DynamicResource AccentMain}"/>
+            <TextBlock Text="Готовий до нових рекордів сьогодні?" FontSize="18" Foreground="{DynamicResource TextMuted}" Margin="0,-15,0,10"/>
+            
+            <Border Background="{DynamicResource BgCard}" CornerRadius="16" Padding="25" BoxShadow="0 4 15 0 #22000000">
+                <StackPanel Spacing="15">
+                    <TextBlock Text="ОСТАННЯ АКТИВНІСТЬ" FontSize="18" FontWeight="Bold" Foreground="{DynamicResource TextWhite}"/>
+                    <Border Background="{DynamicResource BgDark}" CornerRadius="8" Padding="20">
+                        <TextBlock Text="{Binding LastWorkoutText}" FontSize="18" Foreground="{DynamicResource AccentMain}" FontWeight="Bold" TextWrapping="Wrap"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+            
+            <UniformGrid Columns="2" Margin="0,5,0,0">
+                 <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20" Margin="0,0,10,0">
                     <StackPanel>
-                        <TextBlock Text="{DynamicResource HomeStat1}" Classes="StatLabel" />
-                        <TextBlock Text="{Binding WorkoutsThisWeek}" Classes="StatValue" />
+                        <TextBlock Text="{Binding TotalWorkouts}" FontSize="36" FontWeight="Black" Foreground="{DynamicResource TextWhite}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Всього тренувань" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Border>
-
-                <Border Classes="StatCard">
+                <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20" Margin="10,0,0,0">
                     <StackPanel>
-                        <TextBlock Text="{DynamicResource HomeStat2}" Classes="StatLabel" />
-                        <TextBlock Text="{Binding MaxRecord}" Classes="StatValue" />
-                    </StackPanel>
-                </Border>
-
-                <Border Classes="StatCard">
-                    <StackPanel>
-                        <TextBlock Text="{DynamicResource HomeStat3}" Classes="StatLabel" />
-                        <TextBlock Text="{Binding FavoriteExercise}" Classes="StatValue" FontSize="18" />
+                        <TextBlock Text="Активний" FontSize="36" FontWeight="Black" Foreground="#00FF00" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Статус профілю" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Border>
             </UniformGrid>
-
-            <TextBlock Text="{DynamicResource HomeRecent}" FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,20,0,10" />
-            <Border Background="{DynamicResource BgBeige}" CornerRadius="12" Height="200">
-                <ItemsControl ItemsSource="{Binding RecentLogs}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid ColumnDefinitions="Auto, *, Auto" Margin="0,0,0,20">
-                                <Border Grid.Column="0" 
-                                        Background="#22FF4500" 
-                                        CornerRadius="8" 
-                                        Width="45" Height="45" 
-                                        Margin="0,0,15,0">
-                                    <PathIcon Data="M22 12h-4l-3 9L9 3l-3 9H2" 
-                                              Width="20" Height="20" 
-                                              Foreground="{DynamicResource AccentMain}"/>
-                                </Border>
-                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="16" Foreground="{DynamicResource TextWhite}"/>
-                                    <TextBlock Text="{Binding Summary}" FontSize="13" Foreground="{DynamicResource TextMuted}" Margin="0,4,0,0"/>
-                                </StackPanel>
-                                <TextBlock Grid.Column="2" 
-                                           Text="{Binding Date}" 
-                                           FontWeight="Black" 
-                                           Foreground="{DynamicResource AccentMain}" 
-                                           VerticalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+            
+            <Border Background="{DynamicResource AccentMain}" CornerRadius="16" Padding="25" Margin="0,15,0,0">
+                <StackPanel>
+                    <TextBlock Text="ЦИТАТА ДНЯ" FontSize="14" FontWeight="Bold" Foreground="#FFFFFFFF" Margin="0,0,0,10" Opacity="0.8"/>
+                    <TextBlock Text="&quot;Дисципліна — це єдиний міст між твоїми цілями та досягненнями.&quot;" 
+                               FontSize="20" FontStyle="Italic" FontWeight="Bold" Foreground="White" TextWrapping="Wrap"/>
+                </StackPanel>
             </Border>
+            
         </StackPanel>
     </ScrollViewer>
 </UserControl>

@@ -50,9 +50,23 @@ public partial class AnalyticsViewModel : ViewModelBase
 
     public void CalculateProgress()
     {
-        var profile = _dataService.LoadProfile();
-        double startWeight = profile.StartWeight; 
-        TargetWeight = profile.TargetWeight;
+        var currentUser = SessionManager.CurrentUser;
+        
+        if (currentUser == null)
+        {
+            TargetWeight = 80;
+        }
+        else
+        {
+            if (double.TryParse(currentUser.GoalWeight, out double parsedGoal))
+            {
+                TargetWeight = parsedGoal;
+            }
+            else
+            {
+                TargetWeight = 80;
+            }
+        }
         
         if (MeasurementsHistory.Any())
         {
@@ -60,14 +74,24 @@ public partial class AnalyticsViewModel : ViewModelBase
         }
         else
         {
-            CurrentWeight = startWeight;
+            CurrentWeight = 0;
         }
-        if (CurrentWeight >= TargetWeight)
-            ProgressPercentage = 100;
-        else if (CurrentWeight <= startWeight)
-            ProgressPercentage = 0;
+        
+        if (TargetWeight > 0 && CurrentWeight > 0)
+        {
+            if (CurrentWeight >= TargetWeight)
+            {
+                ProgressPercentage = 100;
+            }
+            else
+            {
+                ProgressPercentage = (CurrentWeight / TargetWeight) * 100;
+            }
+        }
         else
-            ProgressPercentage = ((CurrentWeight - startWeight) / (TargetWeight - startWeight)) * 100;
+        {
+            ProgressPercentage = 0;
+        }
     }
 
     [RelayCommand]

@@ -12,29 +12,6 @@ public class JsonDataService
     private readonly string _measurementsFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "measurements_data.json");
     private readonly string _profileFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "profile_data.json");
     
-    public void SaveWorkouts(IEnumerable<WorkoutItem> workouts)
-    {
-        string json = JsonSerializer.Serialize(workouts);
-        File.WriteAllText(_filePath, json);
-    }
-    
-    public List<WorkoutItem> LoadWorkouts()
-    {
-        if (!File.Exists(_filePath))
-        {
-            return new List<WorkoutItem>();
-        }
-        try
-        {
-            string json = File.ReadAllText(_filePath);
-            return JsonSerializer.Deserialize<List<WorkoutItem>>(json) ?? new List<WorkoutItem>();
-        }
-        catch (Exception)
-        {
-            return new List<WorkoutItem>();
-        }
-    }
-    
     public List<BodyMeasurementItem> LoadMeasurements()
     {
         if (!File.Exists(_measurementsFilePath))
@@ -48,18 +25,5 @@ public class JsonDataService
     {
         string json = JsonSerializer.Serialize(measurements);
         File.WriteAllText(_measurementsFilePath, json);
-    }
-    public UserProfile LoadProfile()
-    {
-        if (!File.Exists(_profileFilePath))
-            return new UserProfile();
-
-        string json = File.ReadAllText(_profileFilePath);
-        return JsonSerializer.Deserialize<UserProfile>(json) ?? new UserProfile();
-    }
-    public void SaveProfile(UserProfile profile)
-    {
-        string json = JsonSerializer.Serialize(profile);
-        File.WriteAllText(_profileFilePath, json);
     }
 }
