@@ -32,6 +32,7 @@ public partial class LoginViewModel : ViewModelBase
         
         if (result.Success && result.User != null)
         {
+            SessionManager.CurrentUser = result.User;
             bool isAdmin = result.User.Role == "Trainer";
             _onLoginSuccess?.Invoke(isAdmin);
         }

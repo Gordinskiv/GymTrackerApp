@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -11,67 +13,52 @@ namespace PracticaGymTracker.ViewModels;
 /// </summary>
 public partial class WorkoutsViewModel : ViewModelBase
 {
-    [ObservableProperty]
-    private ObservableCollection<WorkoutItem> _workoutsList;
+    private readonly WorkoutService _workoutService;
     
     [ObservableProperty]
-    private string _newExerciseName = string.Empty;
+    private ObservableCollection<WorkoutModel> _myWorkouts;
+    
+    [ObservableProperty] private string _workoutType = string.Empty;
+    [ObservableProperty] private string _duration = string.Empty;
+    [ObservableProperty] private string _intensity = "Середня";
+    [ObservableProperty] private string _notes = string.Empty;
+    
+    public List<string> IntensityOptions { get; } = new List<string> { "Низька", "Середня", "Висока" };
 
-    [ObservableProperty]
-    private string _newWeight = string.Empty;
-
-    [ObservableProperty]
-    private string _newReps = string.Empty;
-    
-    private readonly JsonDataService _dataService;
-    
-    /// <summary>
-    /// Додавання вправи, які записується в файл JSON.
-    /// </summary>
-    [RelayCommand]
-    private void AddWorkout()
-    {
-        if (!string.IsNullOrWhiteSpace(NewExerciseName))
-        {
-            int.TryParse(NewReps, out int parsedReps);
-            
-            var newExercise = new WorkoutItem
-            {
-                ExerciseName = NewExerciseName,
-                Weight = string.IsNullOrWhiteSpace(NewWeight) ? "0 кг" : NewWeight,
-                Reps = parsedReps
-            };
-            
-            WorkoutsList.Add(newExercise);
-            
-            _dataService.SaveWorkouts(WorkoutsList);
-            
-            NewExerciseName = string.Empty;
-            NewWeight = string.Empty;
-            NewReps = string.Empty;
-        }
-    }
-    
-    /// <summary>
-    /// Конструктор, який завантажує з JSON файлу вправи.
-    /// </summary>
     public WorkoutsViewModel()
     {
-        _dataService = new JsonDataService();
-        var loadedWorkouts = _dataService.LoadWorkouts();
-        WorkoutsList = new ObservableCollection<WorkoutItem>(loadedWorkouts);
+        _workoutService = new WorkoutService();
+        LoadMyWorkouts();
     }
-    /// <summary>
-    /// Видалення вибраної вправи.
-    /// </summary>
-    /// <param name="workout">Виділена вправа</param>
-    [RelayCommand]
-    private void DeleteWorkout(WorkoutItem workout)
+
+    private void LoadMyWorkouts()
     {
-        if (workout != null && WorkoutsList.Contains(workout))
+        var workouts = _workoutService.GetWorkoutsForCurrentUser();
+        MyWorkouts = new ObservableCollection<WorkoutModel>(workouts);
+    }
+
+    [RelayCommand]
+    private void SaveWorkout()
+    {
+        if (string.IsNullOrWhiteSpace(WorkoutType) || string.IsNullOrWhiteSpace(Duration))
+            return; 
+
+        if (!int.TryParse(Duration, out int durationMins))
+            durationMins = 0;
+
+        var newWorkout = new WorkoutModel
         {
-            WorkoutsList.Remove(workout);
-            _dataService.SaveWorkouts(WorkoutsList);
-        }
+            Date = DateTime.Now.ToString("dd.MM.yyyy"),
+            Type = WorkoutType,
+            DurationMinutes = durationMins,
+            Intensity = Intensity,
+            Notes = Notes
+        };
+        _workoutService.AddWorkout(newWorkout);
+        LoadMyWorkouts();
+        
+        WorkoutType = string.Empty;
+        Duration = string.Empty;
+        Notes = string.Empty;
     }
 }
