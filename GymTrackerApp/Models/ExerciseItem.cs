@@ -1,4 +1,6 @@
 using System;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 
 namespace PracticaGymTracker.Models;
 
@@ -21,4 +23,19 @@ public class ExerciseItem
     public string SecondaryTargetMuscle { get; set; }   
     public string Description { get; set; } = string.Empty;
     public string ImagePath { get; set; } = string.Empty;
+    public Bitmap? ImageBitmap
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(ImagePath)) return null;
+            try
+            {
+                return new Bitmap(AssetLoader.Open(new Uri(ImagePath)));
+            }
+            catch
+            {
+                return null; 
+            }
+        }
+    }
 }

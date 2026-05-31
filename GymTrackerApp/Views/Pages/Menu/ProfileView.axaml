@@ -8,7 +8,7 @@
              x:Class="PracticaGymTracker.Views.Pages.Menu.ProfileView">
     <ScrollViewer Padding="30">
         <StackPanel Spacing="25">
-            <TextBlock Text="МІЙ ПРОФІЛЬ" FontSize="28" FontWeight="Black" Foreground="{DynamicResource AccentMain}"/>
+            <TextBlock Text="{DynamicResource MyProfile}" FontSize="28" FontWeight="Black" Foreground="{DynamicResource AccentMain}"/>
             
             <Border Background="{DynamicResource BgCard}" CornerRadius="16" Padding="30" BoxShadow="0 4 15 0 #22000000">
                 <Grid ColumnDefinitions="Auto, *">
@@ -24,38 +24,38 @@
                 </Grid>
             </Border>
 
-            <TextBlock Text="МОЯ СТАТИСТИКА" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource TextWhite}" Margin="0,15,0,0"/>
+            <TextBlock Text="{DynamicResource MyStatistic}" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource TextWhite}" Margin="0,15,0,0"/>
             
             <UniformGrid Columns="3">
                 <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20" Margin="0,0,10,0">
                     <StackPanel>
                         <TextBlock Text="{Binding TotalWorkouts}" FontSize="36" FontWeight="Black" Foreground="{DynamicResource AccentMain}" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Тренувань" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{DynamicResource Training}" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 
                 <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20" Margin="5,0,5,0">
                     <StackPanel>
-                        <TextBlock Text="0" FontSize="36" FontWeight="Black" Foreground="{DynamicResource TextWhite}" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Досягнень" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding TotalAchievements}" FontSize="36" FontWeight="Black" Foreground="{DynamicResource TextWhite}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{DynamicResource Achievements}" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 
                 <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20" Margin="10,0,0,0">
                     <StackPanel>
                         <TextBlock Text="1" FontSize="36" FontWeight="Black" Foreground="{DynamicResource TextWhite}" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Днів у додатку" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{DynamicResource DaysActivities}" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Border>
             </UniformGrid>
             <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="25" Margin="0,20,0,0">
                 <Grid ColumnDefinitions="*, Auto">
                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                        <TextBlock Text="ЦІЛЬОВА ВАГА (КГ)" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextMuted}" Margin="0,0,0,5"/>
+                        <TextBlock Text="{DynamicResource GoalWeight}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource TextMuted}" Margin="0,0,0,5"/>
                         <TextBox Text="{Binding CurrentGoalWeight}" FontSize="18" Padding="10" Background="{DynamicResource BgDark}" BorderThickness="0" MaxWidth="150" HorizontalAlignment="Left"/>
                     </StackPanel>
         
-                    <Button Grid.Column="1" Content="ОНОВИТИ МЕТУ" Command="{Binding SaveGoalCommand}"
+                    <Button Grid.Column="1" Content="{DynamicResource UpdateGoal}" Command="{Binding SaveGoalCommand}"
                             Background="{DynamicResource AccentMain}" Foreground="White" FontWeight="Bold" CornerRadius="8" Padding="20,10" VerticalAlignment="Bottom" Cursor="Hand"/>
                 </Grid>
             </Border>

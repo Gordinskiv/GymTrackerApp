@@ -11,11 +11,11 @@
         <StackPanel Spacing="25">
             
             <TextBlock Text="{Binding WelcomeMessage}" FontSize="36" FontWeight="Black" Foreground="{DynamicResource AccentMain}"/>
-            <TextBlock Text="Готовий до нових рекордів сьогодні?" FontSize="18" Foreground="{DynamicResource TextMuted}" Margin="0,-15,0,10"/>
+            <TextBlock Text="{DynamicResource DashboardReady}" FontSize="18" Foreground="{DynamicResource TextMuted}" Margin="0,-15,0,10"/>
             
             <Border Background="{DynamicResource BgCard}" CornerRadius="16" Padding="25" BoxShadow="0 4 15 0 #22000000">
                 <StackPanel Spacing="15">
-                    <TextBlock Text="ОСТАННЯ АКТИВНІСТЬ" FontSize="18" FontWeight="Bold" Foreground="{DynamicResource TextWhite}"/>
+                    <TextBlock Text="{DynamicResource LastActivity}" FontSize="18" FontWeight="Bold" Foreground="{DynamicResource TextWhite}"/>
                     <Border Background="{DynamicResource BgDark}" CornerRadius="8" Padding="20">
                         <TextBlock Text="{Binding LastWorkoutText}" FontSize="18" Foreground="{DynamicResource AccentMain}" FontWeight="Bold" TextWrapping="Wrap"/>
                     </Border>
@@ -26,21 +26,21 @@
                  <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20" Margin="0,0,10,0">
                     <StackPanel>
                         <TextBlock Text="{Binding TotalWorkouts}" FontSize="36" FontWeight="Black" Foreground="{DynamicResource TextWhite}" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Всього тренувань" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{DynamicResource TotalTraining}" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 <Border Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20" Margin="10,0,0,0">
                     <StackPanel>
-                        <TextBlock Text="Активний" FontSize="36" FontWeight="Black" Foreground="#00FF00" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Статус профілю" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{DynamicResource Activity}" FontSize="36" FontWeight="Black" Foreground="#00FF00" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{DynamicResource StatusProfile}" Foreground="{DynamicResource TextMuted}" FontWeight="Bold" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Border>
             </UniformGrid>
             
             <Border Background="{DynamicResource AccentMain}" CornerRadius="16" Padding="25" Margin="0,15,0,0">
                 <StackPanel>
-                    <TextBlock Text="ЦИТАТА ДНЯ" FontSize="14" FontWeight="Bold" Foreground="#FFFFFFFF" Margin="0,0,0,10" Opacity="0.8"/>
-                    <TextBlock Text="&quot;Дисципліна — це єдиний міст між твоїми цілями та досягненнями.&quot;" 
+                    <TextBlock Text="{DynamicResource Quote}" FontSize="14" FontWeight="Bold" Foreground="#FFFFFFFF" Margin="0,0,0,10" Opacity="0.8"/>
+                    <TextBlock Text="{DynamicResource QuoteDiscipline}" 
                                FontSize="20" FontStyle="Italic" FontWeight="Bold" Foreground="White" TextWrapping="Wrap"/>
                 </StackPanel>
             </Border>

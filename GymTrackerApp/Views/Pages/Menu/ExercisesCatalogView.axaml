@@ -61,12 +61,12 @@
                         <Border Background="{DynamicResource BgDark}" ClipToBounds="True" CornerRadius="12" Margin="0,10" MinHeight="250"
                                 IsVisible="{Binding SelectedExercise.ImagePath, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
     
-                            <Image Source="{Binding SelectedExercise.ImagePath}" 
+                            <Image Source="{Binding SelectedExercise.ImageBitmap}" 
                                    Stretch="Uniform" 
                                    MaxHeight="350"/>
                         </Border>
                         
-                        <TextBlock Text="ТЕХНІКА ВИКОНАННЯ" FontWeight="Black" Foreground="{DynamicResource TextMuted}" Margin="0,10,0,0"/>
+                        <TextBlock Text="{DynamicResource PerformanceTechnique}" FontWeight="Black" Foreground="{DynamicResource TextMuted}" Margin="0,10,0,0"/>
                         <TextBlock Text="{Binding SelectedExercise.Description}" 
                                    Foreground="{DynamicResource TextWhite}" 
                                    TextWrapping="Wrap" 

@@ -12,24 +12,24 @@
         
         <Border Grid.Column="0" Background="{DynamicResource BgCard}" CornerRadius="16" Padding="25" VerticalAlignment="Top" Margin="0,0,20,0">
             <StackPanel Spacing="15">
-                <TextBlock Text="НОВЕ ТРЕНУВАННЯ" FontSize="20" FontWeight="Black" Foreground="{DynamicResource AccentMain}" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                <TextBlock Text="{DynamicResource NewTraining}" FontSize="20" FontWeight="Black" Foreground="{DynamicResource AccentMain}" HorizontalAlignment="Center" Margin="0,0,0,10"/>
                 
-                <TextBlock Text="Назва або тип (напр. Спина + Біцепс)" Foreground="{DynamicResource TextMuted}" FontSize="12" Margin="0,0,0,-10"/>
-                <TextBox Text="{Binding WorkoutType}" Watermark="Введіть тип тренування" Padding="12"/>
+                <TextBlock Text="{DynamicResource NameOrType}" Foreground="{DynamicResource TextMuted}" FontSize="12" Margin="0,0,0,-10"/>
+                <TextBox Text="{Binding WorkoutType}" Watermark="{DynamicResource EnterTypeTraining}" Padding="12"/>
                 
-                <TextBlock Text="Тривалість (у хвилинах)" Foreground="{DynamicResource TextMuted}" FontSize="12" Margin="0,0,0,-10"/>
-                <TextBox Text="{Binding Duration}" Watermark="Наприклад: 60" Padding="12"/>
+                <TextBlock Text="{DynamicResource Duration}" Foreground="{DynamicResource TextMuted}" FontSize="12" Margin="0,0,0,-10"/>
+                <TextBox Text="{Binding Duration}" Watermark="{DynamicResource ExampleDuration}" Padding="12"/>
                 
-                <TextBlock Text="Інтенсивність" Foreground="{DynamicResource TextMuted}" FontSize="12" Margin="0,0,0,-10"/>
+                <TextBlock Text="{DynamicResource Intensity}" Foreground="{DynamicResource TextMuted}" FontSize="12" Margin="0,0,0,-10"/>
                 <ComboBox ItemsSource="{Binding IntensityOptions}" 
                           SelectedItem="{Binding Intensity}" 
                           HorizontalAlignment="Stretch" 
                           Padding="12"/>
                 
-                <TextBlock Text="Нотатки" Foreground="{DynamicResource TextMuted}" FontSize="12" Margin="0,0,0,-10"/>
-                <TextBox Text="{Binding Notes}" Watermark="Як пройшло тренування?" Height="80" AcceptsReturn="True" TextWrapping="Wrap" Padding="12"/>
+                <TextBlock Text="{DynamicResource Notes}" Foreground="{DynamicResource TextMuted}" FontSize="12" Margin="0,0,0,-10"/>
+                <TextBox Text="{Binding Notes}" Watermark="{DynamicResource HowTraining}" Height="80" AcceptsReturn="True" TextWrapping="Wrap" Padding="12"/>
                 
-                <Button Content="ЗБЕРЕГТИ" Command="{Binding SaveWorkoutCommand}" 
+                <Button Content="{DynamicResource SaveTraining}" Command="{Binding SaveWorkoutCommand}" 
                         Background="{DynamicResource AccentMain}" Foreground="White" 
                         FontWeight="Bold" HorizontalAlignment="Stretch" 
                         HorizontalContentAlignment="Center" Padding="15" Margin="0,10,0,0"
@@ -39,7 +39,7 @@
 
         <Border Grid.Column="1" Background="{DynamicResource BgCard}" CornerRadius="16" Padding="25">
             <Grid RowDefinitions="Auto, *">
-                <TextBlock Grid.Row="0" Text="МОЯ ІСТОРІЯ" FontSize="20" FontWeight="Black" Foreground="{DynamicResource TextWhite}" Margin="0,0,0,20"/>
+                <TextBlock Grid.Row="0" Text="{DynamicResource MyStory}" FontSize="20" FontWeight="Black" Foreground="{DynamicResource TextWhite}" Margin="0,0,0,20"/>
                 
                 <ScrollViewer Grid.Row="1">
                     <ItemsControl ItemsSource="{Binding MyWorkouts}">

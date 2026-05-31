@@ -10,14 +10,14 @@
 
     <Grid RowDefinitions="Auto, *, Auto, Auto, Auto" Margin="20">
 
-        <TextBlock Grid.Row="0" Text="АНАЛІТИКА ТА ЗАМІРИ"
+        <TextBlock Grid.Row="0" Text="{DynamicResource AnalyticsAndMeasurement}"
                    FontSize="28" FontWeight="Black"
                    Foreground="{DynamicResource TextWhite}"
                    Margin="0,0,0,20" />
         <Border Grid.Row="1" Background="{DynamicResource BgCard}" CornerRadius="12" Padding="20" Margin="0,0,0,20"
                 ClipToBounds="True">
             <Grid RowDefinitions="Auto, *">
-                <TextBlock Grid.Row="0" Text="ПРОГРЕС ВАГИ (КГ)"
+                <TextBlock Grid.Row="0" Text="{DynamicResource AnalyticsWeightProgress}"
                            Foreground="{DynamicResource TextMuted}"
                            FontWeight="Bold" Margin="0,0,0,10" />
                 <lvc:CartesianChart Grid.Row="1"
@@ -29,16 +29,16 @@
 
         <Border Grid.Row="2" Background="{DynamicResource BgCard}" CornerRadius="12" Padding="15" Margin="0,0,0,20">
             <Grid ColumnDefinitions="*, *, *, *, Auto">
-                <TextBox Grid.Column="0" Watermark="Вага (кг)" Text="{Binding NewWeight}" Margin="0,0,10,0"
+                <TextBox Grid.Column="0" Watermark="{DynamicResource Weight(Kg)}" Text="{Binding NewWeight}" Margin="0,0,10,0"
                          Background="{DynamicResource BgDark}" BorderThickness="0" />
-                <TextBox Grid.Column="1" Watermark="Груди (см)" Text="{Binding NewChest}" Margin="0,0,10,0"
+                <TextBox Grid.Column="1" Watermark="{DynamicResource Chest(Cm)}" Text="{Binding NewChest}" Margin="0,0,10,0"
                          Background="{DynamicResource BgDark}" BorderThickness="0" />
-                <TextBox Grid.Column="2" Watermark="Біцепс (см)" Text="{Binding NewBiceps}" Margin="0,0,10,0"
+                <TextBox Grid.Column="2" Watermark="{DynamicResource Biceps(Cm)}" Text="{Binding NewBiceps}" Margin="0,0,10,0"
                          Background="{DynamicResource BgDark}" BorderThickness="0" />
-                <TextBox Grid.Column="3" Watermark="Талія (см)" Text="{Binding NewWaist}" Margin="0,0,10,0"
+                <TextBox Grid.Column="3" Watermark="{DynamicResource Waist(Cm)}" Text="{Binding NewWaist}" Margin="0,0,10,0"
                          Background="{DynamicResource BgDark}" BorderThickness="0" />
 
-                <Button Grid.Column="4" Content="ДОДАТИ" Command="{Binding AddMeasurementCommand}"
+                <Button Grid.Column="4" Content="{DynamicResource AddMeasures}" Command="{Binding AddMeasurementCommand}"
                         Background="{DynamicResource AccentMain}" Foreground="White" FontWeight="Bold" CornerRadius="8" />
             </Grid>
         </Border>
@@ -46,9 +46,9 @@
         <StackPanel Grid.Row="3" Margin="0,0,0,20">
 
             <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,10">
-                <TextBlock Grid.Column="0" Text="ІСТОРІЯ ЗАМІРІВ" FontSize="20" FontWeight="Black"
+                <TextBlock Grid.Column="0" Text="{DynamicResource AnalyticsHistoryOfMeasurement}" FontSize="20" FontWeight="Black"
                            Foreground="{DynamicResource TextWhite}" VerticalAlignment="Center" />
-                <Button Grid.Column="1" Content="ВИДАЛИТИ ВИБРАНЕ"
+                <Button Grid.Column="1" Content="{DynamicResource DeleteMeasures}"
                         Command="{Binding DeleteMeasurementCommand}"
                         Background="#E53935" Foreground="White" FontWeight="Bold" CornerRadius="8" Padding="15,5">
                     <Button.IsEnabled>
@@ -66,13 +66,13 @@
                           Foreground="{DynamicResource TextWhite}"
                           GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#33ffffff">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ДАТА" Binding="{Binding DisplayDate}" Width="*" />
-                        <DataGridTextColumn Header="ВАГА" Binding="{Binding Weight, StringFormat='{}{0} кг'}" Width="*"
+                        <DataGridTextColumn Header="{DynamicResource DateRecord}" Binding="{Binding DisplayDate}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource Weight}" Binding="{Binding Weight, StringFormat='{}{0} кг'}" Width="*"
                                             Foreground="{DynamicResource AccentMain}" />
-                        <DataGridTextColumn Header="ГРУДИ" Binding="{Binding Chest, StringFormat='{}{0} см'}" Width="*" />
-                        <DataGridTextColumn Header="БІЦЕПС" Binding="{Binding Biceps, StringFormat='{}{0} см'}"
+                        <DataGridTextColumn Header="{DynamicResource Chest}" Binding="{Binding Chest, StringFormat='{}{0} см'}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource Biceps}" Binding="{Binding Biceps, StringFormat='{}{0} см'}"
                                             Width="*" />
-                        <DataGridTextColumn Header="ТАЛІЯ" Binding="{Binding Waist, StringFormat='{}{0} см'}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource Waist}" Binding="{Binding Waist, StringFormat='{}{0} см'}" Width="*" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>

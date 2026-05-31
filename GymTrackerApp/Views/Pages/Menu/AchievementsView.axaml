@@ -9,7 +9,7 @@
     
     <ScrollViewer Padding="30">
         <StackPanel Spacing="25">
-            <TextBlock Text="ДОСЯГНЕННЯ" FontSize="28" FontWeight="Black" Foreground="{DynamicResource TextWhite}"/>
+            <TextBlock Text="{DynamicResource MenuAchievement}" FontSize="28" FontWeight="Black" Foreground="{DynamicResource TextWhite}"/>
             
             <ItemsControl ItemsSource="{Binding AchievementsList}">
                 <ItemsControl.ItemsPanel>
