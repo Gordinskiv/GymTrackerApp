@@ -49,4 +49,15 @@ public class WorkoutService
         _workouts.Add(workout);
         SaveWorkouts();
     }
+    public void DeleteWorkout(WorkoutModel workoutToDelete)
+    {
+        var workoutToRemove = _workouts.FirstOrDefault(w => w.Id == workoutToDelete.Id);
+    
+        if (workoutToRemove != null)
+        {
+            _workouts.Remove(workoutToRemove);
+            
+            SaveWorkouts(); 
+        }
+    }
 }

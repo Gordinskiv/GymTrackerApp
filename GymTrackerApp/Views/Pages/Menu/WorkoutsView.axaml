@@ -47,21 +47,36 @@
                             <DataTemplate>
                                 <Border Background="{DynamicResource BgDark}" CornerRadius="12" Padding="15" Margin="0,0,0,10">
                                     <Grid ColumnDefinitions="Auto, *, Auto">
-                                        
+        
                                         <Border Grid.Column="0" Background="{DynamicResource AccentMain}" CornerRadius="8" Padding="10,5" Margin="0,0,15,0" VerticalAlignment="Center">
                                             <TextBlock Text="{Binding Date}" Foreground="White" FontWeight="Bold" FontSize="12"/>
                                         </Border>
-                                        
+        
                                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                             <TextBlock Text="{Binding Type}" FontWeight="Bold" FontSize="18" Foreground="{DynamicResource TextWhite}"/>
                                             <TextBlock Text="{Binding Notes}" FontSize="13" Foreground="{DynamicResource TextMuted}" Margin="0,4,0,0" TextWrapping="Wrap"/>
                                         </StackPanel>
-                                        
-                                        <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right">
-                                            <TextBlock Text="{Binding DurationMinutes, StringFormat='{}{0} хв'}" FontWeight="Bold" FontSize="16" Foreground="{DynamicResource TextWhite}" HorizontalAlignment="Right"/>
-                                            <TextBlock Text="{Binding Intensity}" FontSize="12" Foreground="{DynamicResource AccentMain}" HorizontalAlignment="Right"/>
+        
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Spacing="15">
+            
+                                            <StackPanel VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding DurationMinutes, StringFormat='{}{0} хв'}" FontWeight="Bold" FontSize="16" Foreground="{DynamicResource TextWhite}" HorizontalAlignment="Right"/>
+                                                <TextBlock Text="{Binding Intensity}" FontSize="12" Foreground="{DynamicResource AccentMain}" HorizontalAlignment="Right"/>
+                                            </StackPanel>
+            
+                                            <Button Content="✕" 
+                                                    x:CompileBindings="False"
+                                                    Command="{Binding #RootControl.DataContext.DeleteWorkoutCommand}"
+                                                    CommandParameter="{Binding}"
+                                                    Background="Transparent" 
+                                                    Foreground="#FF5555" 
+                                                    FontSize="18" 
+                                                    FontWeight="Bold" 
+                                                    Cursor="Hand" 
+                                                    VerticalAlignment="Center"
+                                                    Padding="5"/>
                                         </StackPanel>
-                                        
+        
                                     </Grid>
                                 </Border>
                             </DataTemplate>

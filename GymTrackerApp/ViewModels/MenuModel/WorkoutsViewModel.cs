@@ -61,4 +61,14 @@ public partial class WorkoutsViewModel : ViewModelBase
         Duration = string.Empty;
         Notes = string.Empty;
     }
+    [RelayCommand]
+    private void DeleteWorkout(WorkoutModel workout)
+    {
+        if (workout != null && MyWorkouts.Contains(workout))
+        {
+            MyWorkouts.Remove(workout);
+            
+            _workoutService.DeleteWorkout(workout); 
+        }
+    }
 }
