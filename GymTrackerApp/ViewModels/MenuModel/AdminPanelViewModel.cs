@@ -43,8 +43,7 @@ public partial class AdminPanelViewModel : ViewModelBase
                 Name = athlete.Login, 
                 Goal = "Базова програма",
                 LastActive = "Нещодавно",
-                ProgressPercent = 10, 
-                StatusColor = "#00FF00"
+                StatusColor = "Gray"
             })
         );
     }

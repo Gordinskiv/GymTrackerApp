@@ -9,6 +9,6 @@ public class BodyMeasurementItem
     public double Chest { get; set; }
     public double Biceps { get; set; }
     public double Waist { get; set; }
-    
+    public string UserLogin { get; set; }
     public string DisplayDate => Date.ToString("dd.MM.yy");
 }

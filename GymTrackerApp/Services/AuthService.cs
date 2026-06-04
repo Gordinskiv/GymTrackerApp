@@ -26,13 +26,14 @@ public class AuthService
 
     private void SaveUsers()
     {
-        string json = JsonSerializer.Serialize(_users, new JsonSerializerOptions { WriteIndented = true });
+        string json = JsonSerializer.Serialize(_users);
         File.WriteAllText(_filePath, json);
     }
 
     public (bool Success, string Message) RegisterUser(string login, string password, string role = "User")
     {
         if (string.IsNullOrWhiteSpace(login)) return (false, "Логін не може бути порожнім.");
+        if (string.IsNullOrWhiteSpace(password)) return (false, "Пароль не може бути пустий");
         if (password.Length < 4) return (false, "Пароль має містити мінімум 4 символи.");
         if (_users.Any(u => u.Login.ToLower() == login.ToLower()))
             return (false, "Користувач з таким логіном вже існує.");

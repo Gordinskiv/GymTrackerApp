@@ -18,10 +18,6 @@ public class ClientItem
     /// </summary>
     public string LastActive { get; set; }  
     /// <summary>
-    /// Поточний прогрес виконання цілі у відсотках.
-    /// </summary>
-    public int ProgressPercent { get; set; }
-    /// <summary>
     /// Колір, яким буде відображатися користувач(онлайн/офлайн).
     /// </summary>
     public string StatusColor { get; set; }

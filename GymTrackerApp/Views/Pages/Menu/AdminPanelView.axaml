@@ -41,14 +41,8 @@
                                     <TextBlock Text="{Binding Goal}" FontSize="13" Foreground="{DynamicResource AccentMain}" Margin="0,4,0,0"/>
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="0,0,20,0">
-                                    <TextBlock Text="{Binding ProgressPercent, StringFormat='{}{0}% до мети'}" FontSize="12" Foreground="{DynamicResource TextMuted}" Margin="0,0,0,5"/>
-                                    <ProgressBar Value="{Binding ProgressPercent}" Height="6" CornerRadius="3" Background="#33FFFFFF" Foreground="{DynamicResource AccentMain}"/>
-                                </StackPanel>
-
                                 <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="15" VerticalAlignment="Center">
                                     <TextBlock Text="{Binding LastActive}" Foreground="{DynamicResource TextMuted}" VerticalAlignment="Center"/>
-                                    <Button Content="{DynamicResource CoachProfile}" Background="Transparent" Foreground="#FFD700" BorderBrush="#FFD700" BorderThickness="1" CornerRadius="6" Cursor="Hand"/>
                                 </StackPanel>
                                 
                             </Grid>

@@ -63,7 +63,6 @@
                                                 <TextBlock Text="{Binding DurationMinutes, StringFormat='{}{0} хв'}" FontWeight="Bold" FontSize="16" Foreground="{DynamicResource TextWhite}" HorizontalAlignment="Right"/>
                                                 <TextBlock Text="{Binding Intensity}" FontSize="12" Foreground="{DynamicResource AccentMain}" HorizontalAlignment="Right"/>
                                             </StackPanel>
-            
                                             <Button Content="✕" 
                                                     x:CompileBindings="False"
                                                     Command="{Binding #RootControl.DataContext.DeleteWorkoutCommand}"

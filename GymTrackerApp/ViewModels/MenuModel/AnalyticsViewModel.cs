@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -15,7 +16,8 @@ namespace PracticaGymTracker.ViewModels;
 public partial class AnalyticsViewModel : ViewModelBase
 {
     private readonly JsonDataService _dataService;
-
+    
+    private List<BodyMeasurementItem> _allMeasurements;
     [ObservableProperty] private ObservableCollection<BodyMeasurementItem> _measurementsHistory;
     [ObservableProperty] private double _currentWeight;
     [ObservableProperty] private double _progressPercentage;
@@ -41,8 +43,18 @@ public partial class AnalyticsViewModel : ViewModelBase
 
     private void LoadData()
     {
-        var data = _dataService.LoadMeasurements();
-        MeasurementsHistory = new ObservableCollection<BodyMeasurementItem>(data);
+        _allMeasurements = _dataService.LoadMeasurements()?.ToList() ?? new List<BodyMeasurementItem>();
+        
+        var currentUser = SessionManager.CurrentUser;
+        if (currentUser != null)
+        {
+            var userMeasurements = _allMeasurements.Where(m => m.UserLogin == currentUser.Login).ToList();
+            MeasurementsHistory = new ObservableCollection<BodyMeasurementItem>(userMeasurements);
+        }
+        else
+        {
+            MeasurementsHistory = new ObservableCollection<BodyMeasurementItem>();
+        }
 
         CalculateProgress();
         UpdateChart();
@@ -102,9 +114,11 @@ public partial class AnalyticsViewModel : ViewModelBase
             double.TryParse(NewChest, out double parsedChest);
             double.TryParse(NewBiceps, out double parsedBiceps);
             double.TryParse(NewWaist, out double parsedWaist);
+            var currentUser = SessionManager.CurrentUser;
 
             var newItem = new BodyMeasurementItem
             {
+                UserLogin = currentUser?.Login,
                 Date = DateTime.Now,
                 Weight = parsedWeight,
                 Chest = parsedChest,
@@ -112,7 +126,8 @@ public partial class AnalyticsViewModel : ViewModelBase
                 Waist = parsedWaist
             };
             MeasurementsHistory.Add(newItem);
-            _dataService.SaveMeasurements(MeasurementsHistory.ToList());
+            _allMeasurements.Add(newItem);
+            _dataService.SaveMeasurements(_allMeasurements);
             CalculateProgress();
             UpdateChart();
             
@@ -128,6 +143,7 @@ public partial class AnalyticsViewModel : ViewModelBase
     {
         if (SelectedMeasurement != null)
         {
+            _allMeasurements.Remove(SelectedMeasurement);
             MeasurementsHistory.Remove(SelectedMeasurement);
             _dataService.SaveMeasurements(MeasurementsHistory.ToList());
             CalculateProgress();
