@@ -1,0 +1,15 @@
+[Bb]in/
+[Oo]bj/
+.idea/
+.DS_Store
+*.db
+*.db-shm
+*.db-wal
+TestDb/
+GymTrackerAppTest/bin/
+GymTrackerAppTest/obj/
+GymTrackerAppTest/.idea/
+GymTrackerAppTest/.DS_Store
+GymTrackerAppTest/Data/*.db
+GymTrackerAppTest/Data/*.db-shm
+GymTrackerAppTest/Data/*.db-wal

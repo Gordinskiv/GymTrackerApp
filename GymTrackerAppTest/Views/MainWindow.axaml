@@ -1,0 +1,202 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PracticaGymTracker.ViewModels"
+        xmlns:views="using:PracticaGymTracker.Views.Pages"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:menu="clr-namespace:PracticaGymTracker.Views.Pages.Menu"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        MinWidth="1100" MinHeight="750"
+        x:Class="PracticaGymTracker.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="GymTrackerAppTest"
+        WindowState="Maximized">
+    
+    <Window.Styles>
+        <Style Selector="Button.MenuItem">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.MenuItem:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource HoverBg}" />
+        </Style>
+        <Style Selector="Button.MenuItem:pointerover">
+            <Setter Property="RenderTransform" Value="scale(1.05)"/>
+        </Style>
+    </Window.Styles>
+
+    <Window.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+            <views:HomeView />
+        </DataTemplate> 
+        <DataTemplate DataType="{x:Type vm:WorkoutsViewModel}">
+            <views:WorkoutsView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AnalyticsViewModel}">
+            <views:AnalyticsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AchievementsViewModel}">
+            <views:AchievementsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ExercisesCatalogViewModel}">
+            <views:ExercisesCatalogView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+            <views:SettingsView />
+        </DataTemplate> 
+        <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+            <views:LoginView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:RegisterViewModel}">
+            <views:RegisterView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AdminPanelViewModel}">
+            <views:AdminPanelView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ProfileViewModel}">
+            <menu:ProfileView/>
+        </DataTemplate>
+    </Window.DataTemplates>
+
+    <Grid ColumnDefinitions="Auto, *">
+        <TextBlock Grid.Column="1" Text="NO PAIN&#x0a;NO GAIN"
+                   FontSize="130"
+                   FontWeight="Black"
+                   Foreground="{DynamicResource AccentMain}"
+                   Opacity="0.5"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <TextBlock.RenderTransform>
+                <RotateTransform Angle="-15" />
+            </TextBlock.RenderTransform>
+        </TextBlock>
+
+        <Border Grid.Column="1">
+            <TransitioningContentControl Content="{Binding CurrentPage}">
+                <TransitioningContentControl.PageTransition>
+                    <CrossFade Duration="0:0:0.4" /> 
+                </TransitioningContentControl.PageTransition>
+            </TransitioningContentControl>
+        </Border>
+
+        <Border Grid.Column="0" Width="250" IsVisible="{Binding IsMenuVisible}" Background="{DynamicResource BgBeige}" Padding="15,20,15,20">
+            <Grid RowDefinitions="*, Auto">
+                <StackPanel Grid.Row="0" Spacing="15">
+                    <TextBlock Text="GYM TRACKER"
+                           Foreground="#FF6347"
+                           FontSize="22"
+                           FontWeight="Black"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,30"
+                           LetterSpacing="2" />
+                <Button Command="{Binding ShowHomeCommand}"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                        Background="Transparent" Foreground="{DynamicResource TextWhite}" Classes="MenuItem"
+                        FontSize="16" FontWeight="SemiBold" Padding="15,10" CornerRadius="8">
+                    <StackPanel Orientation="Horizontal" Spacing="20">
+                        <PathIcon Data="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8 M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                            Width="20" Height="20" />
+                        <TextBlock Text="{DynamicResource MenuMain}" FontWeight="Bold" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+
+                <Button Command="{Binding ShowWorkoutsCommand}"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                        Background="Transparent" Foreground="{DynamicResource TextWhite}" Classes="MenuItem"
+                        FontSize="16" FontWeight="SemiBold" Padding="15,10" CornerRadius="8">
+                    <StackPanel Orientation="Horizontal" Spacing="15" 
+                                VerticalAlignment="Center">
+                         <PathIcon Data="M12.409 13.017A5 5 0 0 1 22 15c0 3.866-4 7-9 7-4.077 0-8.153-.82-10.371-2.462-.426-.316-.631-.832-.62-1.362C2.118 12.723 2.627 2 10 2a3 3 0 0 1 3 3 2 2 0 0 1-2 2c-1.105 0-1.64-.444-2-1 M15 14a5 5 0 0 0-7.584 2 M9.964 6.825C8.019 7.977 9.5 13 8 15"
+                                           Width="20" Height="20"   
+                                           VerticalAlignment="Center"/>
+                        <TextBlock Text="{DynamicResource MenuWorkouts}" FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Command="{Binding ShowAnalyticsCommand}" 
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                        Background="Transparent" Foreground="{DynamicResource TextWhite}" Classes="MenuItem"
+                        FontSize="16" FontWeight="SemiBold" Padding="15,10" CornerRadius="8">
+                    <StackPanel Orientation="Horizontal" Spacing="15">
+                        <PathIcon Data="M3 3v18h18 M18 17l-6-6-4 4-5-5" Width="20" Height="20" />
+                        <TextBlock Text="{DynamicResource MenuAnalytics}" FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Command="{Binding ShowAchievementsCommand}" 
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                        Background="Transparent" Foreground="{DynamicResource TextWhite}" Classes="MenuItem"
+                        FontSize="16" FontWeight="SemiBold" Padding="15,10" CornerRadius="8">
+                    <StackPanel Orientation="Horizontal" Spacing="15">
+                        <PathIcon Data="M6 9V2h12v7 M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2 M12 22v-4 M8 22h8" 
+                                  Width="20" Height="20" />
+                        <TextBlock Text="{DynamicResource MenuAchievement}" FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Command="{Binding ShowExercisesCatalogCommand}" 
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                        Background="Transparent" Foreground="{DynamicResource TextWhite}" Classes="MenuItem"
+                        FontSize="16" FontWeight="SemiBold" Padding="15,10" CornerRadius="8">
+                    <StackPanel Orientation="Horizontal" Spacing="15">
+                        <PathIcon Data="m20 13.7-2.1-2.1a2 2 0 0 0-2.8 0L9.7 17 M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"
+                                  Width="20" Height="20" />
+                        <TextBlock Text="{DynamicResource MenuCatalogOfExercises}" FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button Command="{Binding ShowProfileCommand}" 
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                        Background="Transparent" Foreground="{DynamicResource TextWhite}" Classes="MenuItem"
+                        FontSize="16" FontWeight="SemiBold" Padding="15,10" CornerRadius="8">
+                    <StackPanel Orientation="Horizontal" Spacing="15">
+                        <PathIcon Data="M12,19.2C9.5,19.2 7.29,18.04 5.86,16.23C5.9,14.18 9.94,13.05 12,13.05C14.06,13.05 18.1,14.18 18.14,16.23C16.71,18.04 14.5,19.2 12,19.2M12,5.85A2.7,2.7 0 0,1 14.7,8.55A2.7,2.7 0 0,1 12,11.25A2.7,2.7 0 0,1 9.3,8.55A2.7,2.7 0 0,1 12,5.85M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                                  Width="20" Height="20" />
+                        <TextBlock Text="{DynamicResource Profile}" FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Classes="MenuItem" 
+                        Command="{Binding ShowAdminPanelCommand}" 
+                        IsVisible="{Binding IsAdminPanelVisible}" 
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                        Background="Transparent" Foreground="{DynamicResource TextWhite}"
+                        FontSize="16" FontWeight="SemiBold" Padding="15,10" CornerRadius="8">
+                    <StackPanel Orientation="Horizontal" Spacing="15">
+                        <PathIcon Data="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" 
+                                  Width="20" Height="20" Foreground="#FFD700"/> <TextBlock Text="{DynamicResource MenuCoach}" FontWeight="Black" Foreground="#FFD700" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Command="{Binding ShowSettingsCommand}"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                        Background="Transparent" Foreground="{DynamicResource TextWhite}" Classes="MenuItem"
+                        FontSize="16" FontWeight="SemiBold" Padding="15,10 " CornerRadius="8">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <PathIcon Data="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
+                            Width="20" Height="20" />
+                        <TextBlock Text="{DynamicResource MenuSettings}" FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            
+            <Button Grid.Row="1" Command="{Binding ToggleThemeCommand}"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                    Background="Transparent" Foreground="{DynamicResource TextWhite}" Classes="MenuItem"
+                    FontSize="16" FontWeight="SemiBold" Padding="15,10" CornerRadius="8" Margin="0,15,0,0">
+                <StackPanel Orientation="Horizontal" Spacing="15">
+                    <PathIcon Data="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20V4Z" 
+                              Width="20" Height="20" />
+                    <TextBlock Text="Змінити тему" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            </Grid>
+        </Border>
+    </Grid>
+
+</Window>
