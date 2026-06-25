@@ -16,6 +16,7 @@ public partial class ProfileViewModel : ViewModelBase
     [ObservableProperty] private string _totalAchievements = "0";
     [ObservableProperty] private string _avatarLetter = "U";
     [ObservableProperty] private string _currentGoalWeight = "0";
+    [ObservableProperty] private string _totalCalories = "0";
 
     public ProfileViewModel()
     {
@@ -37,6 +38,8 @@ public partial class ProfileViewModel : ViewModelBase
             var achievementService = new AchievementService();
             int unlockedCount = achievementService.GetUnlockedAchievements(currentUser.Login).Count;
             TotalAchievements = unlockedCount.ToString();
+            int calories = myWorkouts.Sum(w => w.DurationMinutes * 10);
+            TotalCalories = calories.ToString();
         }
     }
     [RelayCommand]

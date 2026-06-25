@@ -63,5 +63,6 @@
     <System:String x:Key="HowTraining">How was the training?</System:String>
     <System:String x:Key="SaveTraining">SAVE</System:String>
     <System:String x:Key="MyStory">MY STORY</System:String>
+    <System:String x:Key="Calories">Burned calories</System:String>
 
 </ResourceDictionary>

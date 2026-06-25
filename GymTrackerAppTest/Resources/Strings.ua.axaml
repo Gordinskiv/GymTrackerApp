@@ -63,5 +63,6 @@
     <System:String x:Key="HowTraining">Як пройшло тренування?</System:String>
     <System:String x:Key="SaveTraining">ЗБЕРЕГТИ</System:String>
     <System:String x:Key="MyStory">МОЯ ІСТОРІЯ</System:String>
+    <System:String x:Key="Calories">Спалено калорій</System:String>
     
 </ResourceDictionary>
